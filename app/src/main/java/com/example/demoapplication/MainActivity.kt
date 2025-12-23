@@ -1,0 +1,116 @@
+package com.example.demoapplication
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
+import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.runtime.rememberNavBackStack
+import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
+import androidx.navigation3.ui.NavDisplay
+import com.example.demoapplication.composables.FundScreen
+import com.example.demoapplication.composables.InvestScreen
+import com.example.demoapplication.composables.OrderScreen
+import com.example.demoapplication.composables.PortfolioScreen
+import com.example.demoapplication.composables.WatchListScreen
+import com.example.demoapplication.navigation.Fund
+import com.example.demoapplication.navigation.Invest
+import com.example.demoapplication.navigation.Order
+import com.example.demoapplication.navigation.Portfolio
+import com.example.demoapplication.navigation.WatchList
+import com.example.demoapplication.navigation.bottomNavItems
+import com.example.demoapplication.ui.theme.DemoApplicationTheme
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            val backStack = rememberNavBackStack(Fund)
+            val currentKey = backStack.lastOrNull()
+
+            DemoApplicationTheme {
+                Scaffold(
+                    bottomBar = {
+                        NavigationBar {
+                            bottomNavItems.forEach { item ->
+                                val isSelected = currentKey == item.key
+                                NavigationBarItem(
+                                    icon = {
+                                        Icon(
+                                            imageVector = if (isSelected) {
+                                                item.selectedIcon
+                                            } else {
+                                                item.unselectedIcon
+                                            },
+                                            contentDescription = item.label
+                                        )
+                                    },
+                                    label = { Text(item.label) },
+                                    selected = isSelected,
+                                    onClick = {
+                                        if (isSelected.not()) {
+                                            backStack.removeLastOrNull()
+                                            backStack.add(item.key)
+                                        }
+                                    }
+                                )
+                            }
+                        }
+                    }
+                ) { paddingValues ->
+                    Box(modifier = Modifier.padding(paddingValues)) {
+                        NavDisplay(
+                            backStack = backStack,
+                            entryDecorators = listOf(
+                                rememberSaveableStateHolderNavEntryDecorator(),
+                                rememberViewModelStoreNavEntryDecorator()
+                            ),
+                            onBack = { backStack.removeLastOrNull() },
+                            entryProvider = { key ->
+                                when (key) {
+                                    is Fund -> {
+                                        NavEntry(key = key) { FundScreen(backStack = backStack) }
+                                    }
+
+                                    is Invest -> {
+                                        NavEntry(key = key) { InvestScreen(backStack = backStack) }
+                                    }
+
+                                    is Order -> {
+                                        NavEntry(key = key) { OrderScreen(backStack = backStack) }
+                                    }
+
+                                    is Portfolio -> {
+                                        NavEntry(key = key) { PortfolioScreen(backStack = backStack) }
+                                    }
+
+                                    is WatchList -> {
+                                        NavEntry(key = key) { WatchListScreen(backStack = backStack) }
+                                    }
+
+                                    else -> {
+                                        NavEntry(key = key) {
+                                            Text("Unknown route")
+                                        }
+                                    }
+                                }
+                            }
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
