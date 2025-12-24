@@ -1,6 +1,5 @@
-package com.example.anasdemoapplication.network
+package com.example.anasdemoapplication.data.remote
 
-import com.example.anasdemoapplication.model.TotalHolding
 import retrofit2.Response
 import retrofit2.http.GET
 

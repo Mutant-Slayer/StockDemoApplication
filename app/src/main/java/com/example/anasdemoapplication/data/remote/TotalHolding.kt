@@ -1,4 +1,4 @@
-package com.example.anasdemoapplication.model
+package com.example.anasdemoapplication.data.remote
 
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName

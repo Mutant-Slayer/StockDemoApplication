@@ -1,11 +1,12 @@
 package com.example.anasdemoapplication.data
 
-import com.example.anasdemoapplication.db.UserHoldingDao
-import com.example.anasdemoapplication.model.RequestResult
-import com.example.anasdemoapplication.model.TotalHolding
-import com.example.anasdemoapplication.model.toEntities
-import com.example.anasdemoapplication.model.toTotalHolding
-import com.example.anasdemoapplication.network.ApiInterface
+import com.example.anasdemoapplication.data.local.db.UserHoldingDao
+import com.example.anasdemoapplication.data.remote.RequestResult
+import com.example.anasdemoapplication.data.remote.TotalHolding
+import com.example.anasdemoapplication.data.mapper.toEntities
+import com.example.anasdemoapplication.data.mapper.toTotalHolding
+import com.example.anasdemoapplication.data.remote.ApiInterface
+import com.example.anasdemoapplication.domain.StockRepository
 import com.example.anasdemoapplication.utils.ConnectivityReceiver
 import javax.inject.Inject
 import javax.inject.Singleton

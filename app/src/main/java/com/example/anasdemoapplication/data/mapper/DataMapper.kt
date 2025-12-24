@@ -1,30 +1,8 @@
-package com.example.anasdemoapplication.model
+package com.example.anasdemoapplication.data.mapper
 
-import androidx.annotation.Keep
-import androidx.compose.runtime.Stable
-import com.example.anasdemoapplication.db.UserHoldingEntity
-
-@Keep
-@Stable
-data class TotalHoldingsUiState(
-    val holdings: List<HoldingUiState> = emptyList(),
-    val totalInvestment: Double = 0.0,
-    val currentValue: Double = 0.0,
-    val totalPnL: Double = 0.0,
-    val todaysPnL: Double = 0.0,
-    val pnlPercentage: Double = 0.0
-) {
-    @Keep
-    @Stable
-    data class HoldingUiState(
-        val name: String,
-        val quantity: Int,
-        val profitAndLoss: Double,
-        val lastTradedPrice: Double,
-        val averagePrice: Double,
-        val close: Double
-    )
-}
+import com.example.anasdemoapplication.data.local.db.UserHoldingEntity
+import com.example.anasdemoapplication.data.remote.TotalHolding
+import com.example.anasdemoapplication.domain.TotalHoldingsUiState
 
 fun TotalHolding.toTotalHoldingsUiState(): TotalHoldingsUiState {
     val holdingsList = data.userHolding.map { it.toHoldingUiState() }

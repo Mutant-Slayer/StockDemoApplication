@@ -2,11 +2,11 @@ package com.example.anasdemoapplication.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.anasdemoapplication.data.StockRepository
+import com.example.anasdemoapplication.domain.StockRepository
 import com.example.anasdemoapplication.data.StockRepositoryImpl
-import com.example.anasdemoapplication.db.AppDatabase
-import com.example.anasdemoapplication.db.UserHoldingDao
-import com.example.anasdemoapplication.network.ApiInterface
+import com.example.anasdemoapplication.data.local.db.AppDatabase
+import com.example.anasdemoapplication.data.local.db.UserHoldingDao
+import com.example.anasdemoapplication.data.remote.ApiInterface
 import com.example.anasdemoapplication.utils.Constants
 import dagger.Binds
 import dagger.Module

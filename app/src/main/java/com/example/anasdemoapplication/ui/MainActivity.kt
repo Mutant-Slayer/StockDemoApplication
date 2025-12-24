@@ -1,4 +1,4 @@
-package com.example.anasdemoapplication
+package com.example.anasdemoapplication.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -26,12 +26,12 @@ import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
-import com.example.anasdemoapplication.navigation.Fund
-import com.example.anasdemoapplication.navigation.Invest
-import com.example.anasdemoapplication.navigation.Order
-import com.example.anasdemoapplication.navigation.Portfolio
-import com.example.anasdemoapplication.navigation.WatchList
-import com.example.anasdemoapplication.navigation.bottomNavItems
+import com.example.anasdemoapplication.ui.navigation.Fund
+import com.example.anasdemoapplication.ui.navigation.Invest
+import com.example.anasdemoapplication.ui.navigation.Order
+import com.example.anasdemoapplication.ui.navigation.Portfolio
+import com.example.anasdemoapplication.ui.navigation.WatchList
+import com.example.anasdemoapplication.ui.navigation.bottomNavItems
 import com.example.anasdemoapplication.ui.screens.FundScreen
 import com.example.anasdemoapplication.ui.screens.InvestScreen
 import com.example.anasdemoapplication.ui.screens.OrderScreen

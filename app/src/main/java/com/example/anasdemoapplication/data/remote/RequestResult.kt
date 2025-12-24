@@ -1,4 +1,4 @@
-package com.example.anasdemoapplication.model
+package com.example.anasdemoapplication.data.remote
 
 sealed class RequestResult<out R> {
     data class Success<out T>(val data: T) : RequestResult<T>()

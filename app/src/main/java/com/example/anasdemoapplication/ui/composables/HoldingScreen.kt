@@ -39,9 +39,9 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.anasdemoapplication.R
-import com.example.anasdemoapplication.StockViewModel
-import com.example.anasdemoapplication.model.RequestResult
-import com.example.anasdemoapplication.model.TotalHoldingsUiState
+import com.example.anasdemoapplication.data.remote.RequestResult
+import com.example.anasdemoapplication.domain.TotalHoldingsUiState
+import com.example.anasdemoapplication.ui.StockViewModel
 
 @Composable
 fun HoldingScreen(
@@ -145,7 +145,10 @@ fun HoldingListUi(modifier: Modifier = Modifier, totalHoldings: TotalHoldingsUiS
                     )
                 }
                 Text(
-                    text = "₹ %.2f".format(totalHoldings.totalPnL),
+                    text = "₹ %.2f (%.2f%%)".format(
+                        totalHoldings.totalPnL,
+                        totalHoldings.pnlPercentage
+                    ),
                     color = if (totalHoldings.totalPnL >= 0) Color.Green.copy(alpha = 0.5f) else Color.Red.copy(
                         alpha = 0.5f
                     ),
@@ -177,18 +180,6 @@ fun HoldingListUi(modifier: Modifier = Modifier, totalHoldings: TotalHoldingsUiS
                         valueColor = if (totalHoldings.todaysPnL >= 0) Color.Green.copy(alpha = 0.5f) else Color.Red.copy(
                             alpha = 0.5f
                         )
-                    )
-                    HorizontalDivider()
-                    PnLDetailRow(
-                        label = "Profit & Loss*",
-                        value = "₹ %.2f (%.2f%%)".format(
-                            totalHoldings.totalPnL,
-                            totalHoldings.pnlPercentage
-                        ),
-                        valueColor = if (totalHoldings.totalPnL >= 0) Color.Green.copy(alpha = 0.5f) else Color.Red.copy(
-                            alpha = 0.5f
-                        ),
-                        isHighlighted = true
                     )
                 }
             }

@@ -1,11 +1,11 @@
-package com.example.anasdemoapplication
+package com.example.anasdemoapplication.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.anasdemoapplication.data.StockRepository
-import com.example.anasdemoapplication.model.RequestResult
-import com.example.anasdemoapplication.model.TotalHoldingsUiState
-import com.example.anasdemoapplication.model.toTotalHoldingsUiState
+import com.example.anasdemoapplication.data.mapper.toTotalHoldingsUiState
+import com.example.anasdemoapplication.data.remote.RequestResult
+import com.example.anasdemoapplication.domain.StockRepository
+import com.example.anasdemoapplication.domain.TotalHoldingsUiState
 import com.example.anasdemoapplication.utils.ConnectivityReceiver
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -1,4 +1,4 @@
-package com.example.anasdemoapplication.navigation
+package com.example.anasdemoapplication.ui.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite

@@ -1,4 +1,4 @@
-package com.example.anasdemoapplication.db
+package com.example.anasdemoapplication.data.local.db
 
 import androidx.room.Dao
 import androidx.room.Insert
