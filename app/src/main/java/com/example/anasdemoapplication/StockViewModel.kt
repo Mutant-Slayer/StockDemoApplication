@@ -24,6 +24,10 @@ constructor(
         MutableStateFlow<RequestResult<TotalHoldingsUiState>>(RequestResult.Loading)
     val totalHoldings: StateFlow<RequestResult<TotalHoldingsUiState>> = _totalHoldings.asStateFlow()
 
+    init {
+        getAllHoldings()
+    }
+
     fun getAllHoldings() {
         _totalHoldings.update { RequestResult.Loading }
         viewModelScope.launch {
