@@ -2,6 +2,7 @@ package com.example.anasdemoapplication.model
 
 import androidx.annotation.Keep
 import androidx.compose.runtime.Stable
+import com.example.anasdemoapplication.db.UserHoldingEntity
 
 @Keep
 @Stable
@@ -39,3 +40,35 @@ fun TotalHolding.Data.UserHolding.toHoldingUiState() = TotalHoldingsUiState.Hold
     lastTradedPrice = lastTradedPrice,
     averagePrice = averagePrice
 )
+
+fun TotalHolding.Data.UserHolding.toEntity(): UserHoldingEntity {
+    return UserHoldingEntity(
+        symbol = symbol,
+        averagePrice = averagePrice,
+        close = close,
+        lastTradedPrice = lastTradedPrice,
+        quantity = quantity
+    )
+}
+
+fun List<TotalHolding.Data.UserHolding>.toEntities(): List<UserHoldingEntity> {
+    return map { it.toEntity() }
+}
+
+fun UserHoldingEntity.toDomain(): TotalHolding.Data.UserHolding {
+    return TotalHolding.Data.UserHolding(
+        symbol = symbol,
+        averagePrice = averagePrice,
+        close = close,
+        lastTradedPrice = lastTradedPrice,
+        quantity = quantity
+    )
+}
+
+fun List<UserHoldingEntity>.toTotalHolding(): TotalHolding {
+    return TotalHolding(
+        data = TotalHolding.Data(
+            userHolding = this.map { it.toDomain() }
+        )
+    )
+}

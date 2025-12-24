@@ -36,7 +36,7 @@ fun HoldingScreen(
     modifier: Modifier = Modifier,
     viewModel: StockViewModel = hiltViewModel(viewModelStoreOwner = LocalContext.current as ComponentActivity)
 ) {
-    val totalHoldings by remember { viewModel.totalHoldings }.collectAsStateWithLifecycle()
+    val totalHoldings by viewModel.totalHoldings.collectAsStateWithLifecycle()
 
     HoldingList(modifier = modifier, totalHoldings = totalHoldings)
 }
@@ -120,7 +120,7 @@ fun HoldingItem(modifier: Modifier = Modifier, userHolding: TotalHoldingsUiState
             Text(
                 text = "P&L: ₹ %.2f".format(userHolding.profitAndLoss),
                 color = if (userHolding.profitAndLoss >= 0) {
-                    Color.Green.copy(alpha = 0.3f)
+                    Color.Green.copy(alpha = 0.5f)
                 } else {
                     Color.Red.copy(alpha = 0.5f)
                 }

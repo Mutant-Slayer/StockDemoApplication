@@ -1,13 +1,18 @@
 package com.example.anasdemoapplication.di
 
+import android.content.Context
+import androidx.room.Room
 import com.example.anasdemoapplication.data.StockRepository
 import com.example.anasdemoapplication.data.StockRepositoryImpl
+import com.example.anasdemoapplication.db.AppDatabase
+import com.example.anasdemoapplication.db.UserHoldingDao
 import com.example.anasdemoapplication.network.ApiInterface
 import com.example.anasdemoapplication.utils.Constants
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -34,6 +39,24 @@ abstract class AppModule {
         @Singleton
         fun getApiInterface(): ApiInterface {
             return getRetrofitInstance().create(ApiInterface::class.java)
+        }
+
+        @Provides
+        @Singleton
+        fun provideAppDatabase(
+            @ApplicationContext context: Context,
+        ): AppDatabase {
+            return Room.databaseBuilder(
+                context,
+                AppDatabase::class.java,
+                Constants.DATABASE_NAME
+            ).fallbackToDestructiveMigration()
+                .build()
+        }
+
+        @Provides
+        fun provideUserHoldingDao(database: AppDatabase): UserHoldingDao {
+            return database.userHoldingDao()
         }
     }
 }
