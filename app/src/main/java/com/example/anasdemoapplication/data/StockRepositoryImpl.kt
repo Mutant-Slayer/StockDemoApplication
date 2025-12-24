@@ -26,6 +26,7 @@ constructor(
                 if (response.isSuccessful) {
                     response.body()?.let { totalHolding ->
                         val entities = totalHolding.data.userHolding.toEntities()
+                        userHoldingDao.deleteAllHoldings()
                         userHoldingDao.insertAllHoldings(entities)
                         RequestResult.Success(totalHolding)
                     } ?: RequestResult.Error(Exception("Empty data"))

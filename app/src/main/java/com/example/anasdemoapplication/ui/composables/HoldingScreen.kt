@@ -1,14 +1,19 @@
 package com.example.anasdemoapplication.ui.composables
 
 import androidx.activity.ComponentActivity
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -81,21 +86,33 @@ fun HoldingList(
 
 @Composable
 fun HoldingListUi(modifier: Modifier = Modifier, totalHoldings: TotalHoldingsUiState) {
-    LazyColumn(
+    val scrollState = rememberScrollState()
+    Column(
         modifier = modifier
             .fillMaxSize()
             .padding(top = 10.dp)
     ) {
-        item {
-            HorizontalDivider()
+        HorizontalDivider()
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .verticalScroll(scrollState)
+        ) {
+            totalHoldings.holdings.forEach { uiState ->
+                HoldingItem(userHolding = uiState)
+                HorizontalDivider(modifier = Modifier.padding(horizontal = 4.dp))
+            }
         }
-        items(
-            count = totalHoldings.holdings.size,
-            key = { totalHoldings.holdings[it].name },
-        ) { index ->
-            val uiState = totalHoldings.holdings[index]
-            HoldingItem(userHolding = uiState)
-            HorizontalDivider(modifier = Modifier.padding(horizontal = 4.dp))
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(IntrinsicSize.Max)
+                .background(color = Color.Gray)
+                .padding(horizontal = 8.dp, vertical = 8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(text = "Profit & Loss ^", color = Color.White)
+            Text(text = "120%", color = Color.White)
         }
     }
 }
