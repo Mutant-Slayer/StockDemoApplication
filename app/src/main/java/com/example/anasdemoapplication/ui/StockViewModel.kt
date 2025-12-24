@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.anasdemoapplication.data.mapper.toTotalHoldingsUiState
 import com.example.anasdemoapplication.data.remote.RequestResult
+import com.example.anasdemoapplication.domain.ScreenUiState
 import com.example.anasdemoapplication.domain.StockRepository
 import com.example.anasdemoapplication.domain.TotalHoldingsUiState
 import com.example.anasdemoapplication.utils.ConnectivityReceiver
@@ -24,9 +25,8 @@ constructor(
     private val stockRepository: StockRepository,
     connectivityReceiver: ConnectivityReceiver,
 ) : ViewModel() {
-    private val _totalHoldings =
-        MutableStateFlow<RequestResult<TotalHoldingsUiState>>(RequestResult.Loading)
-    val totalHoldings: StateFlow<RequestResult<TotalHoldingsUiState>> = _totalHoldings.asStateFlow()
+    private val _totalHoldings = MutableStateFlow(TotalHoldingsUiState())
+    val totalHoldings: StateFlow<TotalHoldingsUiState> = _totalHoldings.asStateFlow()
 
     val isConnected = connectivityReceiver.isConnected.stateIn(
         viewModelScope,
@@ -39,20 +39,21 @@ constructor(
     }
 
     fun getAllHoldings() {
-        _totalHoldings.update { RequestResult.Loading }
         viewModelScope.launch {
             when (val result = stockRepository.getHoldingList()) {
                 is RequestResult.Success -> {
                     _totalHoldings.update {
-                        RequestResult.Success(result.data.toTotalHoldingsUiState())
+                        result.data.toTotalHoldingsUiState()
                     }
                 }
 
                 is RequestResult.Error -> {
-                    _totalHoldings.update { RequestResult.Error(result.exception) }
+                    _totalHoldings.update { it.copy(screenUiState = ScreenUiState.Error) }
                 }
 
-                else -> {}
+                else -> {
+                    _totalHoldings.update { it.copy(screenUiState = ScreenUiState.Error) }
+                }
             }
         }
     }

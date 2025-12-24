@@ -2,6 +2,7 @@ package com.example.anasdemoapplication.data.mapper
 
 import com.example.anasdemoapplication.data.local.db.UserHoldingEntity
 import com.example.anasdemoapplication.data.remote.TotalHolding
+import com.example.anasdemoapplication.domain.ScreenUiState
 import com.example.anasdemoapplication.domain.TotalHoldingsUiState
 
 fun TotalHolding.toTotalHoldingsUiState(): TotalHoldingsUiState {
@@ -22,7 +23,8 @@ fun TotalHolding.toTotalHoldingsUiState(): TotalHoldingsUiState {
         currentValue = currentValue,
         totalPnL = currentValue - totalInvestment,
         todaysPnL = todaysPnL,
-        pnlPercentage = pnlPercentage
+        pnlPercentage = pnlPercentage,
+        screenUiState = ScreenUiState.Success
     )
 }
 

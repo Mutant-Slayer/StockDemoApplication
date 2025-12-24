@@ -1,6 +1,5 @@
 package com.example.anasdemoapplication.ui.composables
 
-import androidx.activity.ComponentActivity
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -28,7 +27,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,16 +37,16 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.anasdemoapplication.R
-import com.example.anasdemoapplication.data.remote.RequestResult
+import com.example.anasdemoapplication.domain.ScreenUiState
 import com.example.anasdemoapplication.domain.TotalHoldingsUiState
 import com.example.anasdemoapplication.ui.StockViewModel
 
 @Composable
 fun HoldingScreen(
     modifier: Modifier = Modifier,
-    viewModel: StockViewModel = hiltViewModel(viewModelStoreOwner = LocalContext.current as ComponentActivity)
+    viewModel: StockViewModel = hiltViewModel()
 ) {
-    val totalHoldings by viewModel.totalHoldings.collectAsStateWithLifecycle()
+    val totalHoldings by remember { viewModel.totalHoldings }.collectAsStateWithLifecycle()
 
     HoldingList(modifier = modifier, totalHoldings = totalHoldings)
 }
@@ -56,11 +54,11 @@ fun HoldingScreen(
 @Composable
 fun HoldingList(
     modifier: Modifier = Modifier,
-    totalHoldings: RequestResult<TotalHoldingsUiState>?
+    totalHoldings: TotalHoldingsUiState?
 ) {
     if (totalHoldings != null) {
-        when (totalHoldings) {
-            is RequestResult.Loading -> {
+        when (totalHoldings.screenUiState) {
+            is ScreenUiState.Loading -> {
                 val lottieRes = remember { LottieCompositionSpec.RawRes(R.raw.loading) }
                 val composition by rememberLottieComposition(lottieRes)
                 Box(
@@ -75,16 +73,16 @@ fun HoldingList(
                 }
             }
 
-            is RequestResult.Success -> {
-                HoldingListUi(modifier = modifier, totalHoldings = totalHoldings.data)
+            is ScreenUiState.Success -> {
+                HoldingListUi(modifier = modifier, totalHoldings = totalHoldings)
             }
 
-            is RequestResult.Error -> {
+            is ScreenUiState.Error -> {
                 Box(
                     modifier = modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(text = totalHoldings.exception.message.toString(), color = Color.Black)
+                    Text(text = "Something went wrong", color = Color.Black)
                 }
             }
         }

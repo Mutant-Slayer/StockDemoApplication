@@ -113,23 +113,23 @@ class MainActivity : ComponentActivity() {
                             entryProvider = { key ->
                                 when (key) {
                                     is Fund -> {
-                                        NavEntry(key = key) { FundScreen(backStack = backStack) }
+                                        NavEntry(key = key) { FundScreen() }
                                     }
 
                                     is Order -> {
-                                        NavEntry(key = key) { OrderScreen(backStack = backStack) }
+                                        NavEntry(key = key) { OrderScreen() }
                                     }
 
                                     is Portfolio -> {
-                                        NavEntry(key = key) { PortfolioScreen(backStack = backStack) }
+                                        NavEntry(key = key) { PortfolioScreen() }
                                     }
 
                                     is Invest -> {
-                                        NavEntry(key = key) { InvestScreen(backStack = backStack) }
+                                        NavEntry(key = key) { InvestScreen() }
                                     }
 
                                     is WatchList -> {
-                                        NavEntry(key = key) { WatchListScreen(backStack = backStack) }
+                                        NavEntry(key = key) { WatchListScreen() }
                                     }
 
                                     else -> {

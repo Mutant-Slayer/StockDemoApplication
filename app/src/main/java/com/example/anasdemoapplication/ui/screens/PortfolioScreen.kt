@@ -39,15 +39,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.navigation3.runtime.NavBackStack
-import androidx.navigation3.runtime.NavKey
 import com.example.anasdemoapplication.ui.composables.HoldingScreen
 import com.example.anasdemoapplication.ui.composables.PositionScreen
 
 @Composable
 fun PortfolioScreen(
-    modifier: Modifier = Modifier,
-    backStack: NavBackStack<NavKey>
+    modifier: Modifier = Modifier
 ) {
     val tabs = mutableListOf("Positions", "Holdings")
     var selectedTabIndex by remember { mutableIntStateOf(0) }

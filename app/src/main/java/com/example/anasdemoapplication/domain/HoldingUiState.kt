@@ -11,7 +11,8 @@ data class TotalHoldingsUiState(
     val currentValue: Double = 0.0,
     val totalPnL: Double = 0.0,
     val todaysPnL: Double = 0.0,
-    val pnlPercentage: Double = 0.0
+    val pnlPercentage: Double = 0.0,
+    val screenUiState: ScreenUiState = ScreenUiState.Loading
 ) {
     @Keep
     @Stable
