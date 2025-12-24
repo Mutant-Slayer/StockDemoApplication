@@ -4,5 +4,5 @@ import com.example.anasdemoapplication.model.RequestResult
 import com.example.anasdemoapplication.model.TotalHolding
 
 interface StockRepository {
-    fun getHoldingList(): RequestResult<TotalHolding>
+    suspend fun getHoldingList(): RequestResult<TotalHolding>
 }

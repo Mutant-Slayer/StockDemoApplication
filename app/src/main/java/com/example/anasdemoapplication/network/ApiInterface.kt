@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface ApiInterface {
     @GET(".")
-    fun getTotalHoldingsData(): Response<TotalHolding>
+    suspend fun getTotalHoldingsData(): Response<TotalHolding>
 }

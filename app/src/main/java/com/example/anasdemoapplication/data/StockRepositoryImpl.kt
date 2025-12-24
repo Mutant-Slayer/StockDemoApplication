@@ -12,11 +12,13 @@ class StockRepositoryImpl
 constructor(
     private val apiInterface: ApiInterface
 ) : StockRepository {
-    override fun getHoldingList(): RequestResult<TotalHolding> {
+    override suspend fun getHoldingList(): RequestResult<TotalHolding> {
         return try {
             val response = apiInterface.getTotalHoldingsData()
             if (response.isSuccessful) {
-                RequestResult.Success(response.body()!!)
+                response.body()?.let {
+                    RequestResult.Success(it)
+                } ?: RequestResult.Error(Exception("Empty data"))
             } else {
                 RequestResult.Error(Exception(response.message()))
             }
