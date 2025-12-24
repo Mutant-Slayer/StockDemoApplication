@@ -26,30 +26,30 @@ val bottomNavItems = listOf(
         key = Fund,
         selectedIcon = Icons.Filled.Home,
         unselectedIcon = Icons.Outlined.Home,
-        label = "Watchlist"
-    ),
-    BottomNavItem(
-        key = Invest,
-        selectedIcon = Icons.Filled.Search,
-        unselectedIcon = Icons.Outlined.Search,
-        label = "Order"
+        label = "Fund"
     ),
     BottomNavItem(
         key = Order,
-        selectedIcon = Icons.Filled.Favorite,
-        unselectedIcon = Icons.Outlined.Favorite,
-        label = "Portfolio"
+        selectedIcon = Icons.Filled.Search,
+        unselectedIcon = Icons.Outlined.Search,
+        label = "Orders"
     ),
     BottomNavItem(
         key = Portfolio,
         selectedIcon = Icons.Filled.Person,
         unselectedIcon = Icons.Outlined.Person,
-        label = "Funds"
+        label = "Portfolio"
+    ),
+    BottomNavItem(
+        key = Invest,
+        selectedIcon = Icons.Filled.Favorite,
+        unselectedIcon = Icons.Outlined.Favorite,
+        label = "Invest"
     ),
     BottomNavItem(
         key = WatchList,
         selectedIcon = Icons.Filled.Settings,
         unselectedIcon = Icons.Outlined.Settings,
-        label = "Invest"
+        label = "Watchlist"
     )
 )

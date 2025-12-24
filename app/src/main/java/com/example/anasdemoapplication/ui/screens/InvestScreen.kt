@@ -1,4 +1,4 @@
-package com.example.anasdemoapplication.composables
+package com.example.anasdemoapplication.ui.screens
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,11 +10,11 @@ import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 
 @Composable
-fun PortfolioScreen(
+fun InvestScreen(
     modifier: Modifier = Modifier,
     backStack: NavBackStack<NavKey>
 ) {
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = "Portfolio Screen")
+        Text(text = "Invest Screen")
     }
 }

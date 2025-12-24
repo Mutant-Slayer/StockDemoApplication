@@ -17,11 +17,11 @@ import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
-import com.example.anasdemoapplication.composables.FundScreen
-import com.example.anasdemoapplication.composables.InvestScreen
-import com.example.anasdemoapplication.composables.OrderScreen
-import com.example.anasdemoapplication.composables.PortfolioScreen
-import com.example.anasdemoapplication.composables.WatchListScreen
+import com.example.anasdemoapplication.ui.screens.FundScreen
+import com.example.anasdemoapplication.ui.screens.InvestScreen
+import com.example.anasdemoapplication.ui.screens.OrderScreen
+import com.example.anasdemoapplication.ui.screens.PortfolioScreen
+import com.example.anasdemoapplication.ui.screens.WatchListScreen
 import com.example.anasdemoapplication.navigation.Fund
 import com.example.anasdemoapplication.navigation.Invest
 import com.example.anasdemoapplication.navigation.Order
@@ -84,16 +84,16 @@ class MainActivity : ComponentActivity() {
                                         NavEntry(key = key) { FundScreen(backStack = backStack) }
                                     }
 
-                                    is Invest -> {
-                                        NavEntry(key = key) { InvestScreen(backStack = backStack) }
-                                    }
-
                                     is Order -> {
                                         NavEntry(key = key) { OrderScreen(backStack = backStack) }
                                     }
 
                                     is Portfolio -> {
                                         NavEntry(key = key) { PortfolioScreen(backStack = backStack) }
+                                    }
+
+                                    is Invest -> {
+                                        NavEntry(key = key) { InvestScreen(backStack = backStack) }
                                     }
 
                                     is WatchList -> {
