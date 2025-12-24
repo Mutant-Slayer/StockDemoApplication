@@ -1,4 +1,4 @@
-package com.example.demoapplication
+package com.example.anasdemoapplication
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

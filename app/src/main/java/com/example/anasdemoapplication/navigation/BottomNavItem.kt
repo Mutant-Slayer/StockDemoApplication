@@ -1,4 +1,4 @@
-package com.example.demoapplication.navigation
+package com.example.anasdemoapplication.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -26,30 +26,30 @@ val bottomNavItems = listOf(
         key = Fund,
         selectedIcon = Icons.Filled.Home,
         unselectedIcon = Icons.Outlined.Home,
-        label = "Home"
+        label = "Watchlist"
     ),
     BottomNavItem(
         key = Invest,
         selectedIcon = Icons.Filled.Search,
         unselectedIcon = Icons.Outlined.Search,
-        label = "Search"
+        label = "Order"
     ),
     BottomNavItem(
         key = Order,
         selectedIcon = Icons.Filled.Favorite,
         unselectedIcon = Icons.Outlined.Favorite,
-        label = "Library"
+        label = "Portfolio"
     ),
     BottomNavItem(
         key = Portfolio,
         selectedIcon = Icons.Filled.Person,
         unselectedIcon = Icons.Outlined.Person,
-        label = "Profile"
+        label = "Funds"
     ),
     BottomNavItem(
         key = WatchList,
         selectedIcon = Icons.Filled.Settings,
         unselectedIcon = Icons.Outlined.Settings,
-        label = "Settings"
+        label = "Invest"
     )
 )

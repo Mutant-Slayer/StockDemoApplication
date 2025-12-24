@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.demoapplication"
+    namespace = "com.example.anasdemoapplication"
     compileSdk {
         version = release(36)
     }
@@ -75,10 +75,6 @@ dependencies {
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.androidx.lifecycle.viewmodel.navigation3)
-
-    // paging 3
-    implementation(libs.androidx.paging.runtime)
-    implementation(libs.androidx.paging.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

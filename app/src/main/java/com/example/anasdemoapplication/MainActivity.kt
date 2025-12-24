@@ -1,4 +1,4 @@
-package com.example.demoapplication
+package com.example.anasdemoapplication
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -17,18 +17,18 @@ import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
-import com.example.demoapplication.composables.FundScreen
-import com.example.demoapplication.composables.InvestScreen
-import com.example.demoapplication.composables.OrderScreen
-import com.example.demoapplication.composables.PortfolioScreen
-import com.example.demoapplication.composables.WatchListScreen
-import com.example.demoapplication.navigation.Fund
-import com.example.demoapplication.navigation.Invest
-import com.example.demoapplication.navigation.Order
-import com.example.demoapplication.navigation.Portfolio
-import com.example.demoapplication.navigation.WatchList
-import com.example.demoapplication.navigation.bottomNavItems
-import com.example.demoapplication.ui.theme.DemoApplicationTheme
+import com.example.anasdemoapplication.composables.FundScreen
+import com.example.anasdemoapplication.composables.InvestScreen
+import com.example.anasdemoapplication.composables.OrderScreen
+import com.example.anasdemoapplication.composables.PortfolioScreen
+import com.example.anasdemoapplication.composables.WatchListScreen
+import com.example.anasdemoapplication.navigation.Fund
+import com.example.anasdemoapplication.navigation.Invest
+import com.example.anasdemoapplication.navigation.Order
+import com.example.anasdemoapplication.navigation.Portfolio
+import com.example.anasdemoapplication.navigation.WatchList
+import com.example.anasdemoapplication.navigation.bottomNavItems
+import com.example.anasdemoapplication.ui.theme.DemoApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

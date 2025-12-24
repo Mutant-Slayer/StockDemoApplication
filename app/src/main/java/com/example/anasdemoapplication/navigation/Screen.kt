@@ -1,4 +1,4 @@
-package com.example.demoapplication.navigation
+package com.example.anasdemoapplication.navigation
 
 import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable

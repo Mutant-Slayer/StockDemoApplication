@@ -1,4 +1,4 @@
-package com.example.demoapplication
+package com.example.anasdemoapplication
 
 import org.junit.Test
 
