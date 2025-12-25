@@ -18,6 +18,10 @@ kotlinx-serialization = "1.7.3"
 lottie = "6.6.7"
 room = "2.6.1"
 ksp = "2.0.21-1.0.25"
+mockk = "1.13.8"
+coroutinesTest = "1.7.3"
+turbine = "1.0.0"
+truth = "1.1.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -66,6 +70,12 @@ androidx-room-compiler = { group = "androidx.room", name = "room-compiler", vers
 # Lottie
 lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie" }
+
+# Testing
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesTest" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

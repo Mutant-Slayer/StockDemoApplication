@@ -41,20 +41,24 @@ constructor(
     fun getAllHoldings() {
         _totalHoldings.update { it.copy(screenUiState = ScreenUiState.Loading) }
         viewModelScope.launch {
-            when (val result = stockRepository.getHoldingList()) {
-                is RequestResult.Success -> {
-                    _totalHoldings.update {
-                        result.data.toTotalHoldingsUiState()
+            try {
+                when (val result = stockRepository.getHoldingList()) {
+                    is RequestResult.Success -> {
+                        _totalHoldings.update {
+                            result.data.toTotalHoldingsUiState()
+                        }
+                    }
+
+                    is RequestResult.Error -> {
+                        _totalHoldings.update { it.copy(screenUiState = ScreenUiState.Error) }
+                    }
+
+                    else -> {
+                        _totalHoldings.update { it.copy(screenUiState = ScreenUiState.Error) }
                     }
                 }
-
-                is RequestResult.Error -> {
-                    _totalHoldings.update { it.copy(screenUiState = ScreenUiState.Error) }
-                }
-
-                else -> {
-                    _totalHoldings.update { it.copy(screenUiState = ScreenUiState.Error) }
-                }
+            } catch (_: Exception) {
+                _totalHoldings.update { it.copy(screenUiState = ScreenUiState.Error) }
             }
         }
     }
