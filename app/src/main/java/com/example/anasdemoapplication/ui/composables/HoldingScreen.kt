@@ -1,6 +1,7 @@
 package com.example.anasdemoapplication.ui.composables
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -12,10 +13,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -48,13 +52,18 @@ fun HoldingScreen(
 ) {
     val totalHoldings by remember { viewModel.totalHoldings }.collectAsStateWithLifecycle()
 
-    HoldingList(modifier = modifier, totalHoldings = totalHoldings)
+    HoldingList(
+        modifier = modifier,
+        totalHoldings = totalHoldings,
+        reloadData = viewModel::getAllHoldings
+    )
 }
 
 @Composable
 fun HoldingList(
     modifier: Modifier = Modifier,
-    totalHoldings: TotalHoldingsUiState?
+    totalHoldings: TotalHoldingsUiState?,
+    reloadData: () -> Unit,
 ) {
     if (totalHoldings != null) {
         when (totalHoldings.screenUiState) {
@@ -82,7 +91,27 @@ fun HoldingList(
                     modifier = modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(text = "Something went wrong", color = Color.Black)
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        Text(text = "Something went wrong", color = Color.Black)
+                        Button(
+                            onClick = { reloadData() },
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color.Gray,
+                                contentColor = Color.White
+                            ),
+                            shape = RoundedCornerShape(50),
+                            border = BorderStroke(1.dp, Color.Black)
+                        ) {
+                            Text(
+                                text = "Retry again",
+                                fontWeight = FontWeight.ExtraBold
+                            )
+                        }
+
+                    }
                 }
             }
         }

@@ -39,6 +39,7 @@ constructor(
     }
 
     fun getAllHoldings() {
+        _totalHoldings.update { it.copy(screenUiState = ScreenUiState.Loading) }
         viewModelScope.launch {
             when (val result = stockRepository.getHoldingList()) {
                 is RequestResult.Success -> {

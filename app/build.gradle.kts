@@ -57,6 +57,7 @@ dependencies {
 
     implementation(libs.kotlinx.serialization.json)
 
+    // Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
@@ -81,6 +82,7 @@ dependencies {
     implementation(libs.lottie.compose)
     implementation(libs.lottie)
 
+    // Room
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
